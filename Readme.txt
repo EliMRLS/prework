@@ -6,7 +6,9 @@ Can you solve the following?
 
 solve_cipher(“Uhdo qdph lv Grqdog Gxfn", -3)
 
+
 <<WORD SORTING>>
+
 Write a function that receives a sentence and returns an array with the sentence's words sorted alphabetically. Ignore case and punctuation.
 
 Recommended approach:

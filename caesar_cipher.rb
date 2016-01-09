@@ -10,7 +10,7 @@ newLetters = toNums.map do |i|
   #if lowercase    
     elsif i<= 122 && i >= 97                   
       ( ( (i - 97 + shiftnum) % 26 ) + 97).chr
-  #if numbers
+  #if any other symbol
     else                                      
       i.chr
     end
