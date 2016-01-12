@@ -7,6 +7,7 @@ Can you solve the following?
 solve_cipher(“Uhdo qdph lv Grqdog Gxfn", -3)
 
 
+
 <<WORD SORTING>>
 
 Write a function that receives a sentence and returns an array with the sentence's words sorted alphabetically. Ignore case and punctuation.
@@ -15,6 +16,7 @@ Recommended approach:
 -First, split the sentence into words and sort it with the default sort method.
 -Now, after splitting the array remove punctuation characters.
 -After that, sort using a custom function that ignores cases when comparing words (you can compare both strings after calling upcase on them), but keeping the capitalized words as they were in the beginning .
+
 
 
 <<SHOPPING CART>>
@@ -64,3 +66,30 @@ Make sure that the shopping cart takes into account the item's discount if it ap
 
 ITERATION FOUR:
 There's a special storewide discount we still have to add. If there are more than 5 items in the cart, the user gets 10% off. Where should we apply this discount?
+
+
+
+<<A SITE FOR A MOVIE>>
+
+In this first exercise, you're going to make a website for your favourite movie. Use Sublime Text to create the HTML and CSS files for the site.
+
+You must use at least one of each of the following HTML tags on your film's page:
+
+<section>
+<p>
+<h1>
+<h2>
+<h3>
+<ul>
+<li>
+<strong>
+<em>
+<img>
+<a>
+
+-Start creating an <article> that will contain all your relevant info. This <article> will be 1000px by 1000px, and centered. It's important to use <article>, <header>, <footer> and <aside> tags instead of <div> because of SEO (short for search engine optimization). Get used to working with them, but don't worry about using them properly for now. 
+-Add <header> and <footer>, each with width 100% and height 100px. Put the <header> before the <article> and <footer> after the <article>. 
+-Add three containers inside in the main <article>, with the sizes and structure shown in Basic 2.png.The containers inside <article> will have an image, a title, text and an <aside>. Fill them with your movie's information.
+-Finish by adding a title to your <header> and a signature to your <footer>.
+
+Keep it simple. Focus more on good HTML structure and less on CSS styling for now. We’ll cover that later.
