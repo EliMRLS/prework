@@ -1,0 +1,63 @@
+.centered_article {
+	width: 1000px;
+	height: 1000px;
+	margin: auto;
+	background-color: #A1B0B5;
+}
+
+.left_section {
+	display:inline-block;
+	width: 440px;
+	height: 600px;
+	background-color: #FFFFFF;
+	padding: 20px;
+	margin-left: 10px;
+	margin-top: 10px;
+}
+
+.right_section {
+	display:inline-block;
+	float: right;
+	width: 440px;
+	height: 600px;
+	margin: auto;
+	background-color: #FFFFFF;
+	padding: 20px;
+	margin-right: 10px;
+	margin-top: 10px;
+}
+
+.bottom_section {
+	width: 940px;
+	height: 300px;
+	margin: 5px;
+	background-color: #FFFFFF;
+	padding: 20px;
+	margin-top: 10px;
+	margin-left: 10px;
+}
+
+#horList li {
+	display:inline;
+	padding-left: 0px;
+	padding-right: 20px;
+}
+
+header, footer {
+	width: 100%;
+	height: 100px;
+	text-align: center;
+	padding: 20px;
+}
+
+img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: auto;
+    height: 100%;
+}
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+}
