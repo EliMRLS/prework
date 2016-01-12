@@ -1,3 +1,23 @@
+<<FIZZBUZZ>>
+
+Write a program that prints the numbers from 1 to 100. But for multiples of three print "Fizz" instead of the number and for the multiples of five print "Buzz". For numbers which are multiples of both three and five print "FizzBuzz".
+
+Add a new condition: if the number starts with the number 1, add “Bang” to the result. So for example, now your output should look like this:
+
+Bang
+2
+Fizz
+4
+Buzz
+Fizz
+7
+8
+Fizz
+BuzzBang
+… etc. until 100
+
+
+
 <<CAESAR’S CIPHER>>
 
 In cryptography, a Caesar cipher (also known as Caesar's cipher, the shift cipher, Caesar's code or Caesar shift) is one of the simplest and most widely known encryption techniques. It is a type of substitution cipher in which each letter in the plaintext is replaced by a letter some fixed number of positions down the alphabet. For example, with a left shift of 3, D would be replaced by A, E would become B, and so on. The method is named after Julius Caesar, who used it in his private correspondence.
