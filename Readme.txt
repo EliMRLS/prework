@@ -113,3 +113,14 @@ You must use at least one of each of the following HTML tags on your film's page
 -Finish by adding a title to your <header> and a signature to your <footer>.
 
 Keep it simple. Focus more on good HTML structure and less on CSS styling for now. We’ll cover that later.
+
+
+<<GOOGLE CLONE>>
+
+Let's copy the layout of a page we all know and love: http://www.google.com.
+
+For this exercise treat the search box as a simple <div>. Don't forget to add the borders and the microphone inside it. ;)
+
+Also, it's okay for the <footer> to not stick perfectly to the bottom of the browser like Google's does.
+
+
