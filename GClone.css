@@ -79,31 +79,32 @@
 	margin-top: 25px;
 	margin-left: 570px;
 	background-color: #f1f1f1;
+	border: 1px solid #f1f1f1;
 	text-align: center;
 	vertical-align: middle;
 	color: #757575;
 }
 
 	#search_button:hover {
-		border: 1px solid #E1E4E6;
+		border: 1px solid #c6c6c6;
 		color: #000000;
 	}
 
 #lucky_button {
 	display:inline-block;
-	float: right;
 	width: 130px;
 	height: 35px;
 	margin-top: 26px;
 	margin-right: 570px;
 	background-color: #f1f1f1;
+	border: 1px solid #f1f1f1;
 	text-align: center;
 	vertical-align: middle;
 	color: #757575;
 }
 
 	#lucky_button:hover {
-		border: 1px solid #E1E4E6;
+		border: 1px solid #c6c6c6;
 		color: #000000;
 	}
 
