@@ -202,6 +202,7 @@ function deleteRubbish( array ) {
 	//Example: arrangeElements(['B', 'a', 4 , 23, 'J']) returns [23, 4, 'B', 'a', 'J']
 
 function arrangeElements( array ) {
+	var array = [];
 	array.sort(function (a, b) {
 		if (isFinite(a) === false) {
 			return 1;
@@ -213,9 +214,10 @@ function arrangeElements( array ) {
 	//Example: beautifyLetters([1,5,7,'a','J',p,'E']) returns [1,5,7,'A','j',p,'E']
 	
 function beautifyLetters( array ) {
+var array = [];
 for (var i = 0; i < array.length; i++){
 	var ch = array[i];
-	if ((ch == 'a') || (ch == 'e') || (ch == 'i') || (ch == 'o') || (ch = 'u')){
+	if ((ch == 'a') || (ch == 'e') || (ch == 'i') || (ch == 'o') || (ch = 'u') || (ch = 'A') || (ch = 'E') || (ch = 'I') || (ch = 'O') || (ch = 'U')){
 		ch = Character.toUpperCase(ch);
 	} 
 	else {
@@ -224,7 +226,7 @@ for (var i = 0; i < array.length; i++){
 }
 
 
-//It receives an array with numbers and letters and returns it with its numbers beautified. Letters remain unchanged
+	//It receives an array with numbers and letters and returns it with its numbers beautified. Letters remain unchanged
 	//Beautify process is to reduce a number into a single digit number by adding all its digits together: 
 	// 123 = 6 because 1+2+3 = 6
 	// 9 = 9
@@ -233,24 +235,73 @@ for (var i = 0; i < array.length; i++){
 	//Example: beautifyNumbers([23,59, 4,'A','b']) returns [5, 5, 4, 'A', 'b']
 
 function beautifyNumbers( array ) {
+var array = [];
+	function sumNumbers( n ) {
+		var numbs = n.toString().split('');
+		var sum = 0;
+		var i;
 
+		for (i = 0; i < numbs.length; i++){
+			sum += parseInt(numbs[i]);
+		}
+
+		return sum;
+	}
+	var i;
+	for (i = 0; i < array.length; i++){
+		if (isFinite(array[i]) === true){
+			while (array[i].toString().length < 1){
+				array[i] = sumNumbers(array[i])
+			}
+		}
+	}
+	return array;
 }	
 
 
-
-
-function sortArray( array )
-{
 	//It receives an array with numbers and letters and returns it with its items sorted. Numbers on one side and letters on the other.
 	//Example: sortArray([5,5, 4, 1, 'j', A','b', 'E']) returns [1, 4, 5, 5, 'A', 'b', 'E', 'j']
+
+function sortArray( array ) {
+array = [];
+sortedArray = [];
+lettersArray = [];
+numbersArray = [];
+
+array.forEach(
+    function(currentValue, index, array) {
+        if (isFinite(array[index]) === false) {
+            lettersArray.push(array[index]);
+        } 
+        else if (isFinite(array[index]) === true) {
+            numbersArray.push(array[index]);
+        }
+    })
+
+    lettersArray = lettersArray.sort();
+    numbersArray = numbersArray.sort();
+
+    sortedArray = numbersArray.concat(lettersArray);
+    return sortedArray;
+	
 }
 
 
-function arrayToString( array )
-{
 	//It receives an array and returns a string with all its elements.
 	//Example: arrayToString([1, 4, 5, 5, 'A', 'b', 'E', 'j']) returns "1455AbEj"
+
+function arrayToString( array ){
+var result = "";
+
+    array = array.forEach(
+            function(currentValue, index, array) {
+                result += array[index].toString();
+            }
+    )
+
+    return result;
 }
+	
 
 console.log(arrayAwesomenator(["a", 6, "B", "F", "*", 8, 78, "J" ]) === "668Abfj");
 console.log(arrayAwesomenator(["*", "j", 6, "A", "F", "*", 8, "C", "b", "a", 78, "J", 43523, 1111, "r", "q", "y" ]) === "46688AAbcfjjqry");
