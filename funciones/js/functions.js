@@ -195,6 +195,7 @@ function deleteRubbish( array ) {
             array.splice(i, 1);
         }
     }
+    return array;
 }
 
 	//It receives an array with numbers and letters mixed and returns it with its items arrange:
@@ -202,27 +203,36 @@ function deleteRubbish( array ) {
 	//Example: arrangeElements(['B', 'a', 4 , 23, 'J']) returns [23, 4, 'B', 'a', 'J']
 
 function arrangeElements( array ) {
-	var array = [];
 	array.sort(function (a, b) {
 		if (isFinite(a) === false) {
 			return 1;
 		} 
 		})
+	return array;
 }
 
 	//It receives an array with numbers and letters and returns it with uppercase vowels and lowercase consonants. Numbers remain unchanged
 	//Example: beautifyLetters([1,5,7,'a','J',p,'E']) returns [1,5,7,'A','j',p,'E']
 	
 function beautifyLetters( array ) {
-var array = [];
-for (var i = 0; i < array.length; i++){
-	var ch = array[i];
-	if ((ch == 'a') || (ch == 'e') || (ch == 'i') || (ch == 'o') || (ch = 'u') || (ch = 'A') || (ch = 'E') || (ch = 'I') || (ch = 'O') || (ch = 'U')){
-		ch = Character.toUpperCase(ch);
-	} 
-	else {
-		ch = Character.toLowerCase(ch);
-	}}
+
+var vowels = 'aeiou';
+var consonants = 'bcdfghjklmnpqrstvwxyz';
+
+array.forEach(
+	function(currentValue, index, array){
+		if (isFinite(array[index]) === false){
+			if (vowels.indexOf(array[index].toLowerCase())!= -1){
+				array[index] = array[index].toUpperCase();
+			}
+			else if (consonants.indexOf(array[index].toLowerCase())!= -1){
+				array[index] = array[index].toLowerCase();
+			}
+		}
+	}
+	)
+
+return array;
 }
 
 
@@ -235,7 +245,7 @@ for (var i = 0; i < array.length; i++){
 	//Example: beautifyNumbers([23,59, 4,'A','b']) returns [5, 5, 4, 'A', 'b']
 
 function beautifyNumbers( array ) {
-var array = [];
+	
 	function sumNumbers( n ) {
 		var numbs = n.toString().split('');
 		var sum = 0;
@@ -250,7 +260,7 @@ var array = [];
 	var i;
 	for (i = 0; i < array.length; i++){
 		if (isFinite(array[i]) === true){
-			while (array[i].toString().length < 1){
+			while (array[i].toString().length > 1){
 				array[i] = sumNumbers(array[i])
 			}
 		}
@@ -263,7 +273,6 @@ var array = [];
 	//Example: sortArray([5,5, 4, 1, 'j', A','b', 'E']) returns [1, 4, 5, 5, 'A', 'b', 'E', 'j']
 
 function sortArray( array ) {
-array = [];
 sortedArray = [];
 lettersArray = [];
 numbersArray = [];
