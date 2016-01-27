@@ -1,6 +1,7 @@
 var rover = {
-  position: [0,0], 
-  direction: ['N']
+  position: [0,0], //the rover starts at the lower-left corner of the grid
+  direction: ['North', 'East', 'South', 'West'],
+  currentDirection: 0 
 };
 
 //Convert the sequence of movements given into an array
@@ -9,74 +10,124 @@ function getInstructions(commands){
   return instructions;
 }
 
-//Check if rover has to move forward, backwards, left or right
-function moves(instructions){
+//Check if rover has to move (forward/backwards) or rotate (left/right)
+function movements(instructions){
   for (var i = 0; i < instructions.length; i++){
 
     switch (instructions[i]){
       case 'f':
-      moveForward();
+      move('f');
       break;
 
       case 'b':
-      moveBackwards();
+      move('b');
       break;
 
       case 'l':
-      moveLeft();
+      rotateLeft();
       break;
 
       case 'r':
-      moveRight();
+      rotateRight();
       break;
     }
   }
 }
 
-//Move rover forward
-//Each character 'f' subtracts 1 from the current position[0]. 
-//If it's going off the top edge of the grid (!>=0), it automatically sets the value of position[0] to 9, so rover will appear at the bottom edge.
-function moveForward(f){
-  if ((rover.position[0] - 1) >= 0) {
-    rover.position[0]--;
+
+//Rotate right
+function rotateRight(r){
+  if (rover.currentDirection +1 <= 3){
+      rover.currentDirection++;
   } else {
-    rover.position[0] = 9;
+      rover.currentDirection = 0;
   }
 }
 
-//Move rover backwards
-//Each character 'b' adds 1 from the current position[0]. 
-//If it's going off the bottom edge of the grid (!<=9), it automatically sets the value of position[0] to 0, so rover will appear at the top edge.
-function moveBackwards(b){
-  if (rover.position[0] + 1 <= 9) {
-    rover.position[0]++;
+//Rotate left
+function rotateLeft(l){
+  if (rover.currentDirection -1 >= 1){
+      rover.currentDirection--;
   } else {
-    rover.position[0] = 0;
-  }
-}
-
-//Move rover right
-//Each character 'r' adds 1 from the current position[1]. 
-//If it's going off the right edge of the grid (!<=9), it automatically sets the value of position[1] to 0, so rover will appear at the left edge.
-function moveRight(r){
-  if (rover.position[1] + 1 <= 9) {
-    rover.position[1]++;
-  } else {
-    rover.position[1] = 0;
-  }
-}
-
-//Move rover left
-//Each character 'l' subtracts 1 from the current position[1]. 
-//If it's going off the left edge of the grid (!>=0), it automatically sets the value of position[1] to 9, so rover will appear at the right edge.
-function moveLeft(l){
- if ((rover.position[1] - 1) >= 0) {
-    rover.position[1]--;
-  } else {
-    rover.position[1] = 9;
+      rover.currentDirection = 0;
   }
 }
 
 
-moves('bbbbbbrf'); //New Rover Position: [5, 1]
+//Make a move (forward or backwards)
+//If it's going off the grid, it automatically sets the value of position to 0 or 9, so the rover will wrap from one edge of the grid to another.
+
+function move(where){
+	switch (rover.currentDirection){
+
+		case 0: //Make a move while facing North
+		if (where === 'f'){ //We're going forward
+			if (rover.position[0] + 1 <=9){
+				rover.position[0]++;
+			} else {
+				rover.position[0] = 0;
+			}
+		} else { //We're going backwards
+			if (rover.position[0] - 1 >=0){
+				rover.position[0]--;
+			} else {
+				rover.position[0] = 9
+			}
+		}
+		break;
+
+		case 1: //Make a move while facing East
+		if (where === 'f'){ 
+			if (rover.position[1] + 1 <=9){
+				rover.position[1]++;
+			} else {
+				rover.position[1] = 0;
+			}
+		} else { 
+			if (rover.position[1] - 1 >=0){
+				rover.position[1]--;
+			} else {
+				rober.position[1] = 9;
+			}
+		}
+		break;
+
+		case 2: //Make a move while facing South
+		if (where === 'f'){
+			if (rover.position[0] - 1 >=0){
+				rover.position[0]--;
+			} else {
+				rover.position[0] = 9;
+			}
+		} else {
+			if (rover.position[0] + 1 <=9){
+				rover.position[0]++;
+			} else {
+				rover.position[0] = 0;
+			}
+		}
+		break;
+
+		case 3: //Make a move while facing West
+		if (where === 'f'){
+			if (rover.position[1] - 1 >=0){
+				rover.position[1]--;
+			} else {
+				rover.position[1] = 9;
+			} 
+		} else {
+			if (rover.position[1] + 1 <=9){
+				rover.position[1]++;
+			} else {
+				rover.position[1] = 0;
+			}
+		}
+		break;
+	}
+}
+
+
+
+movements('fffrflbbrf'); 
 console.log("New Rover Position: [" + rover.position[0] + ", " + rover.position[1] + "]")
+console.log("New Rover Direction: " + rover.direction[rover.currentDirection])
