@@ -1,7 +1,9 @@
 var rover = {
-  position: [0,0], //the rover starts at the lower-left corner of the grid
+  position: [0,0], //The rover starts at the lower-left corner of the grid
   direction: ['North', 'East', 'South', 'West'],
-  currentDirection: 0 
+  currentDirection: 0,
+  obstacle: [[1, 2], [4, 5]],
+  toStop: false //The rover won't stop unless reaching and obstacle
 };
 
 //Convert the sequence of movements given into an array
@@ -10,9 +12,13 @@ function getInstructions(commands){
   return instructions;
 }
 
-//Check if rover has to move (forward/backwards) or rotate (left/right)
+
+
+//Check if the rover has to move (forward/backwards) or rotate (left/right)
 function movements(instructions){
   for (var i = 0; i < instructions.length; i++){
+
+  	if (rover.toStop === false){ //By default, the rover won't stop unless reaching and obstacle
 
     switch (instructions[i]){
       case 'f':
@@ -32,6 +38,7 @@ function movements(instructions){
       break;
     }
   }
+}
 }
 
 
@@ -63,71 +70,161 @@ function move(where){
 		case 0: //Make a move while facing North
 		if (where === 'f'){ //We're going forward
 			if (rover.position[0] + 1 <=9){
+				 if (!obstacleDetector(true, rover.position[0] + 1)) {
 				rover.position[0]++;
+				} else {
+					break;
+				}
 			} else {
+				if (!obstacleDetector(true, 0)){	
 				rover.position[0] = 0;
+				} else {
+					break;
+				}
 			}
+				
 		} else { //We're going backwards
 			if (rover.position[0] - 1 >=0){
+				 if (!obstacleDetector(true, rover.position[0] - 1)) {
 				rover.position[0]--;
+				} else {
+					break;
+				}
 			} else {
-				rover.position[0] = 9
+				if (!obstacleDetector(true, 9)){	
+				rover.position[0] = 9;
+				} else {
+					break;
+				}
 			}
-		}
+		}	
 		break;
 
 		case 1: //Make a move while facing East
 		if (where === 'f'){ 
 			if (rover.position[1] + 1 <=9){
+				 if (!obstacleDetector(false, rover.position[1] + 1)) {
 				rover.position[1]++;
+				} else {
+					break;
+				}
 			} else {
+				if (!obstacleDetector(false, 0)){	
 				rover.position[1] = 0;
+				} else {
+					break;
+				}
 			}
-		} else { 
+				
+		} else { //We're going backwards
 			if (rover.position[1] - 1 >=0){
+				 if (!obstacleDetector(false, rover.position[1] - 1)) {
 				rover.position[1]--;
+				} else {
+					break;
+				}
 			} else {
-				rober.position[1] = 9;
+				if (!obstacleDetect(false, 9)){	
+				rover.position[1] = 9;
+				} else {
+					break;
+				}
 			}
-		}
+		}	
 		break;
 
 		case 2: //Make a move while facing South
-		if (where === 'f'){
+		if (where === 'f'){ //We're going forward
 			if (rover.position[0] - 1 >=0){
+				 if (!obstacleDetector(true, rover.position[0] - 1)) {
 				rover.position[0]--;
+				} else {
+					break;
+				}
 			} else {
+				if (!obstacleDetector(true, 9)){	
 				rover.position[0] = 9;
+				} else {
+					break;
+				}
 			}
-		} else {
+				
+		} else { //We're going backwards
 			if (rover.position[0] + 1 <=9){
+				 if (!obstacleDetector(true, rover.position[0] + 1)) {
 				rover.position[0]++;
+				} else {
+					break;
+				}
 			} else {
+				if (!obstacleDetector(true, 0)){	
 				rover.position[0] = 0;
+				} else {
+					break;
+				}
 			}
-		}
+		}	
 		break;
 
 		case 3: //Make a move while facing West
 		if (where === 'f'){
 			if (rover.position[1] - 1 >=0){
+				 if (!obstacleDetector(false, rover.position[1] - 1)) {
 				rover.position[1]--;
+				} else {
+					break;
+				}
 			} else {
+				if (!obstacleDetector(false, 9)){	
 				rover.position[1] = 9;
-			} 
-		} else {
-			if (rover.position[1] + 1 <=9){
-				rover.position[1]++;
-			} else {
-				rover.position[1] = 0;
+				} else {
+					break;
+				}
 			}
-		}
+				
+		} else { //We're going backwards
+			if (rover.position[1] + 1 <=9){
+				 if (!obstacleDetector(false, rover.position[1] + 1)) {
+				rover.position[1]++;
+				} else {
+					break;
+				}
+			} else {
+				if (!obstacleDetector(false, 0)){	
+				rover.position[1] = 0;
+				} else {
+					break;
+				}
+			}
+		}	
 		break;
 	}
 }
 
+function obstacleDetector(yPosition, futurePosition){
+
+	if (yPosition === true){
+		for (var i = 0; i < rover.obstacle.length; i++){
+			if (rover.obstacle[i][0] === futurePosition && rover.obstacle[i][1] === rover.position[1]){
+				console.log('The rover has reached an obstacle in ' + rover.obstacle[i] + '. It is not able to continue');
+				rover.toStop = true;
+				return rover.toStop				
+			}
+		}
+	}
+
+	if (yPosition === false){
+		for (var i = 0; i < rover.obstacle.length; i++){
+			if (rover.obstacle[i][0] === rover.position[0] && rover.obstacle[i][1] === futurePosition){
+				console.log('The rover has reached an obstacle in [' + rover.obstacle[i] + ']. It is not able to continue.');
+				rover.toStop = true;
+				return rover.toStop				
+			}
+		}
+	}
+}
 
 
 movements('fffrflbbrf'); 
-console.log("New Rover Position: [" + rover.position[0] + ", " + rover.position[1] + "]")
-console.log("New Rover Direction: " + rover.direction[rover.currentDirection])
+console.log("Current rover position: [" + rover.position[0] + ", " + rover.position[1] + "]")
+console.log("Current rover direction: " + rover.direction[rover.currentDirection])
